@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WinQuickQR
 {
-    public partial class Form1 : Form
+    public partial class frm_Main : Form
     {
-        public Form1()
+        public frm_Main()
         {
             InitializeComponent();
         }
