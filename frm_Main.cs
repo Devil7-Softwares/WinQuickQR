@@ -40,6 +40,15 @@ namespace WinQuickQR
             }
         }
 
+        private void frm_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Properties.Settings.Default.CloseToSystemTray)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+        }
+
         private void btn_SaveToFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -57,6 +66,23 @@ namespace WinQuickQR
             Clipboard.SetImage(pb_QR.Image);
 
             MessageBox.Show("QR Code copied to clipboard.", "WinQuickQR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ni_MainIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void mi_NotificationMenu_Open_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Show();
+        }
+
+        private void mi_NotificationMenu_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Main));
             this.grp_Input = new System.Windows.Forms.GroupBox();
             this.txt_Input = new System.Windows.Forms.TextBox();
@@ -37,11 +38,16 @@
             this.flp_Actions = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_SaveToFile = new System.Windows.Forms.Button();
             this.btn_CopyToClipboard = new System.Windows.Forms.Button();
+            this.ni_MainIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cms_NotificationMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mi_NotificationMenu_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi_NotificationMenu_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.grp_Input.SuspendLayout();
             this.grp_Output.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_QR)).BeginInit();
             this.tlp_Actions.SuspendLayout();
             this.flp_Actions.SuspendLayout();
+            this.cms_NotificationMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // grp_Input
@@ -136,6 +142,37 @@
             this.btn_CopyToClipboard.UseVisualStyleBackColor = true;
             this.btn_CopyToClipboard.Click += new System.EventHandler(this.btn_CopyToClipboard_Click);
             // 
+            // ni_MainIcon
+            // 
+            this.ni_MainIcon.ContextMenuStrip = this.cms_NotificationMenu;
+            this.ni_MainIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("ni_MainIcon.Icon")));
+            this.ni_MainIcon.Text = "WinQuickQR";
+            this.ni_MainIcon.Visible = true;
+            this.ni_MainIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ni_MainIcon_MouseDoubleClick);
+            // 
+            // cms_NotificationMenu
+            // 
+            this.cms_NotificationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mi_NotificationMenu_Open,
+            this.mi_NotificationMenu_Exit});
+            this.cms_NotificationMenu.Name = "cms_NotificationMenu";
+            this.cms_NotificationMenu.Size = new System.Drawing.Size(104, 48);
+            // 
+            // mi_NotificationMenu_Open
+            // 
+            this.mi_NotificationMenu_Open.Name = "mi_NotificationMenu_Open";
+            this.mi_NotificationMenu_Open.Size = new System.Drawing.Size(180, 22);
+            this.mi_NotificationMenu_Open.Text = "Open";
+            this.mi_NotificationMenu_Open.Click += new System.EventHandler(this.mi_NotificationMenu_Open_Click);
+            // 
+            // mi_NotificationMenu_Exit
+            // 
+            this.mi_NotificationMenu_Exit.Name = "mi_NotificationMenu_Exit";
+            this.mi_NotificationMenu_Exit.Size = new System.Drawing.Size(180, 22);
+            this.mi_NotificationMenu_Exit.Text = "Exit";
+            this.mi_NotificationMenu_Exit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mi_NotificationMenu_Exit.Click += new System.EventHandler(this.mi_NotificationMenu_Exit_Click);
+            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +184,7 @@
             this.Name = "frm_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WinQuickQR";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Main_FormClosing);
             this.Load += new System.EventHandler(this.frm_Main_Load);
             this.grp_Input.ResumeLayout(false);
             this.grp_Input.PerformLayout();
@@ -156,6 +194,7 @@
             this.tlp_Actions.ResumeLayout(false);
             this.tlp_Actions.PerformLayout();
             this.flp_Actions.ResumeLayout(false);
+            this.cms_NotificationMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -170,6 +209,10 @@
         private System.Windows.Forms.FlowLayoutPanel flp_Actions;
         private System.Windows.Forms.Button btn_SaveToFile;
         private System.Windows.Forms.Button btn_CopyToClipboard;
+        private System.Windows.Forms.NotifyIcon ni_MainIcon;
+        private System.Windows.Forms.ContextMenuStrip cms_NotificationMenu;
+        private System.Windows.Forms.ToolStripMenuItem mi_NotificationMenu_Open;
+        private System.Windows.Forms.ToolStripMenuItem mi_NotificationMenu_Exit;
     }
 }
 
