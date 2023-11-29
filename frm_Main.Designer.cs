@@ -63,6 +63,7 @@
             this.txt_Input.Name = "txt_Input";
             this.txt_Input.Size = new System.Drawing.Size(349, 115);
             this.txt_Input.TabIndex = 0;
+            this.txt_Input.TextChanged += new System.EventHandler(this.txt_Input_TextChanged);
             // 
             // grp_Output
             // 
@@ -123,6 +124,7 @@
             this.btn_SaveToFile.TabIndex = 1;
             this.btn_SaveToFile.Text = "Save Image";
             this.btn_SaveToFile.UseVisualStyleBackColor = true;
+            this.btn_SaveToFile.Click += new System.EventHandler(this.btn_SaveToFile_Click);
             // 
             // btn_CopyToClipboard
             // 
@@ -132,6 +134,7 @@
             this.btn_CopyToClipboard.TabIndex = 0;
             this.btn_CopyToClipboard.Text = "Copy Image";
             this.btn_CopyToClipboard.UseVisualStyleBackColor = true;
+            this.btn_CopyToClipboard.Click += new System.EventHandler(this.btn_CopyToClipboard_Click);
             // 
             // frm_Main
             // 
@@ -144,6 +147,7 @@
             this.Name = "frm_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WinQuickQR";
+            this.Load += new System.EventHandler(this.frm_Main_Load);
             this.grp_Input.ResumeLayout(false);
             this.grp_Input.PerformLayout();
             this.grp_Output.ResumeLayout(false);
