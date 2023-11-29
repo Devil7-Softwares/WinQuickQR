@@ -49,13 +49,49 @@ namespace WinQuickQR.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool CloseToSystemTray {
             get {
                 return ((bool)(this["CloseToSystemTray"]));
             }
             set {
                 this["CloseToSystemTray"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MonitorClipboard {
+            get {
+                return ((bool)(this["MonitorClipboard"]));
+            }
+            set {
+                this["MonitorClipboard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowQuickQRForURL {
+            get {
+                return ((bool)(this["ShowQuickQRForURL"]));
+            }
+            set {
+                this["ShowQuickQRForURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int QuickQRTimeout {
+            get {
+                return ((int)(this["QuickQRTimeout"]));
+            }
+            set {
+                this["QuickQRTimeout"] = value;
             }
         }
     }

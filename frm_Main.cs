@@ -1,43 +1,83 @@
 ﻿using QRCoder;
 using System;
+using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using WK.Libraries.SharpClipboardNS;
+using static QRCoder.QRCodeGenerator;
 
 namespace WinQuickQR
 {
     public partial class frm_Main : Form
     {
         private QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        private SharpClipboard clipboard = new SharpClipboard();
+
+        private Regex urlRegex = new Regex(@"^(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$");
 
         public frm_Main()
         {
             InitializeComponent();
         }
 
-        private void txt_Input_TextChanged(object sender, EventArgs e)
+        private Image GetQRCode(string input)
         {
-            QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)Properties.Settings.Default.ECCLevel;
+            ECCLevel eccLevel = (ECCLevel)Properties.Settings.Default.ECCLevel;
 
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(txt_Input.Text, eccLevel);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(input, eccLevel);
             QRCode qRCode = new QRCode(qrCodeData);
 
-            pb_QR.Image = qRCode.GetGraphic(Properties.Settings.Default.PixelPerModule);
+            return qRCode.GetGraphic(Properties.Settings.Default.PixelPerModule);
+        }
+
+        private void Clipboard_ClipboardChanged(object sender, SharpClipboard.ClipboardChangedEventArgs e)
+        {
+            if (e.ContentType == SharpClipboard.ContentTypes.Text)
+            {
+                string content = e.Content.ToString();
+
+                if (!string.IsNullOrEmpty(content))
+                {
+                    txt_Input.Text = content;
+
+                    if (!this.Visible)
+                    {
+                        if (Properties.Settings.Default.ShowQuickQRForURL && urlRegex.IsMatch(content))
+                        {
+                            frm_QuickQR quickQR = new frm_QuickQR(this, GetQRCode(content));
+                            quickQR.Show();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txt_Input_TextChanged(object sender, EventArgs e)
+        {
+            pb_QR.Image = GetQRCode(txt_Input.Text);
         }
 
         private void frm_Main_Load(object sender, EventArgs e)
         {
             try
             {
-                string clipboardText = Clipboard.GetText();
-
-                if (!string.IsNullOrEmpty(clipboardText))
+                if (Clipboard.ContainsText())
                 {
-                    txt_Input.Text = clipboardText;
+                    string clipboardText = Clipboard.GetText();
+
+                    if (!string.IsNullOrEmpty(clipboardText))
+                    {
+                        txt_Input.Text = clipboardText;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"Failed to get clipboard text: {ex.Message}");
             }
+
+            clipboard.MonitorClipboard = Properties.Settings.Default.MonitorClipboard;
+            clipboard.ClipboardChanged += Clipboard_ClipboardChanged;
         }
 
         private void frm_Main_FormClosing(object sender, FormClosingEventArgs e)
