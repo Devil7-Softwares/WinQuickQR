@@ -65,6 +65,7 @@
             // 
             this.txt_Input.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_Input.Location = new System.Drawing.Point(3, 16);
+            this.txt_Input.MaxLength = 1663;
             this.txt_Input.Multiline = true;
             this.txt_Input.Name = "txt_Input";
             this.txt_Input.Size = new System.Drawing.Size(349, 115);
@@ -161,14 +162,14 @@
             // mi_NotificationMenu_Open
             // 
             this.mi_NotificationMenu_Open.Name = "mi_NotificationMenu_Open";
-            this.mi_NotificationMenu_Open.Size = new System.Drawing.Size(180, 22);
+            this.mi_NotificationMenu_Open.Size = new System.Drawing.Size(103, 22);
             this.mi_NotificationMenu_Open.Text = "Open";
             this.mi_NotificationMenu_Open.Click += new System.EventHandler(this.mi_NotificationMenu_Open_Click);
             // 
             // mi_NotificationMenu_Exit
             // 
             this.mi_NotificationMenu_Exit.Name = "mi_NotificationMenu_Exit";
-            this.mi_NotificationMenu_Exit.Size = new System.Drawing.Size(180, 22);
+            this.mi_NotificationMenu_Exit.Size = new System.Drawing.Size(103, 22);
             this.mi_NotificationMenu_Exit.Text = "Exit";
             this.mi_NotificationMenu_Exit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mi_NotificationMenu_Exit.Click += new System.EventHandler(this.mi_NotificationMenu_Exit_Click);
