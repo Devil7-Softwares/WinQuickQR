@@ -82,7 +82,7 @@ namespace WinQuickQR
 
         private void frm_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Properties.Settings.Default.CloseToSystemTray)
+            if (Properties.Settings.Default.CloseToSystemTray && e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
                 this.Hide();
